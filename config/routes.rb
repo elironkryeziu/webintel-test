@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root "articles#index"
+  
+  get "/fill-articles", to: "articles#fill"
+
 
   resources :articles do
     resources :comments
