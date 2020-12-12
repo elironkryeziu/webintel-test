@@ -9,6 +9,19 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
+        <li>
+        <% if current_user %>
+        <%= link_to "Sign out", destroy_user_session_path,
+        method: :delete,
+        data: { confirm: "Are you sure?" }, :style=>'color:#FFFFFF;text-decoration:none', :class => "nav-link css_class" %>
+        <% else %>
+        <%= link_to 'Sign up', new_user_registration_path, :style=>'color:#FFFFFF;text-decoration:none', :class => "nav-link css_class" %>
+        </li>
+        <li>
+        <%= link_to 'Sign in', new_user_session_path, :style=>'color:#FFFFFF;text-decoration:none', :class => "nav-link css_class" %>
+        </li>
+        <% end %>
+
         
       </ul>
       <form class="d-flex">
