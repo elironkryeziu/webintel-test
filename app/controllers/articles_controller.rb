@@ -1,7 +1,6 @@
 require 'rss'
 require 'open-uri'
 
-
 class ArticlesController < ApplicationController
   def index
     @articles = Article.order(id: :desc)
