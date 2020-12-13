@@ -21,8 +21,9 @@
     <%= render 'articles/header' %>
     <div class="container">
     
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice %>
+    <%= render 'layouts/alerts' %>
+  <% end %>
 
     <%= yield %>
     </div>

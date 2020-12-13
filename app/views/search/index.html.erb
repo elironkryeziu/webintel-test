@@ -1,0 +1,11 @@
+<h3>Search Result</h3>
+    
+<ul>
+<% @results.each do |result| %>
+  <li>
+    <a href="/articles/<%= result.id %>">
+      <%= result.title %>
+    </a>
+  </li>
+<% end %>
+</ul>

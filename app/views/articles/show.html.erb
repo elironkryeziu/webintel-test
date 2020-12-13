@@ -1,8 +1,10 @@
 <h1><%= @article.title %></h1>
+<span class="g-color-gray-dark-v4 g-font-size-12"><i><%= @article.created_at.to_s(:long) %></i></span>
+
 
 <p><%= @article.body %></p>
 
-
+<% if current_user %>
 <% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
 <% if pre_like %>
     <% if pre_like.is_dislike %>
@@ -13,10 +15,12 @@
 <% else %>
   <%= button_to 'Like', article_likes_path(@article,is_dislike: 0), method: :post, :class => "btn m-1 btn-primary" %>
   <%= button_to 'Dislike', article_likes_path(@article,is_dislike: 1), method: :post, :class => "btn m-1 btn-danger" %>
-<% end %>
+  <% end %>
+  <% end %>
 
 
-<h2>Likers</h2>
+<% if @article.number_of_likes > 0 %>
+<h2><%= @article.number_of_likes %> like<%= @article.number_of_likes > 1 ? 's' : '' %> </h2>
 <ul>
 <% @article.likes.each do |like| %>
     <% if !like.is_dislike %>
@@ -26,8 +30,10 @@
     <% end %>
   <% end %>
 </ul>
+<% end %>
 
-<h2>Dislikers</h2>
+<% if @article.number_of_dislikes > 0 %>
+<h2><%= @article.number_of_dislikes %> dislike<%= @article.number_of_dislikes > 1 ? 's' : '' %> </h2>
 <ul>
 <% @article.likes.each do |like| %>
     <% if like.is_dislike %>
@@ -37,12 +43,16 @@
     <% end %>
   <% end %>
 </ul>
+<% end %>
 
 
 
+<% if @article.comments.count > 0 %>
 <h2>Comments</h2>
 <%= render @article.comments %>
+<% end %>
 
-
+<% if current_user %>
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
+<% end %>

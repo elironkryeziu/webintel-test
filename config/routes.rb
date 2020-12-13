@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "articles#index"
-  
+  root "articles#index"  
   get "/fill-articles", to: "articles#fill"
-
+  get "/search", to: "search#index", :as => 'search_page'
 
   resources :articles do
     resources :comments
     resources :likes
   end
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

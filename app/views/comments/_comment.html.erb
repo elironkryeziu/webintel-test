@@ -1,19 +1,27 @@
+<div class="card">
+<div class="card-body">
+
 <p>
-  <strong>Commenter:</strong>
-  <%= comment.user.email %>
+  <h5 class="h5 g-color-gray-dark-v1 mb-0"><%= comment.user.email %></h5>
+                <span class="g-color-gray-dark-v4 g-font-size-12"><i><%= comment.created_at.to_s(:long) %></i></span>
 </p>
 
 <p>
-  <strong>Comment:</strong>
   <%= comment.body %>
 </p>
 
 <% if current_user == comment.user %>
 
-<p>
-  <%= link_to 'Destroy Comment', [comment.article, comment],
-               method: :delete,
-               data: { confirm: "Are you sure?" } %>
-</p>
-
+<ul class="list-inline d-sm-flex my-0">
+                <li class="list-inline-item ml-auto">
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                    <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                    <%= link_to 'Delete', [comment.article, comment],
+                        method: :delete,
+                        data: { confirm: "Are you sure?" } %>
+                  </a>
+                </li>
+              </ul>
 <% end %>
+</div>
+</div>
