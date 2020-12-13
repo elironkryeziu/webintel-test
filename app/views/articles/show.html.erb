@@ -3,6 +3,43 @@
 <p><%= @article.body %></p>
 
 
+<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} %>
+<% if pre_like %>
+    <% if pre_like.is_dislike %>
+    <p><i>You have disliked this post</i></p>
+    <% else %>
+    <p><i>You have liked this post</i></p>
+    <% end %>
+<% else %>
+  <%= button_to 'Like', article_likes_path(@article,is_dislike: 0), method: :post, :class => "btn m-1 btn-primary" %>
+  <%= button_to 'Dislike', article_likes_path(@article,is_dislike: 1), method: :post, :class => "btn m-1 btn-danger" %>
+<% end %>
+
+
+<h2>Likers</h2>
+<ul>
+<% @article.likes.each do |like| %>
+    <% if !like.is_dislike %>
+        <li>
+            <%= like.user.email %>
+        </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h2>Dislikers</h2>
+<ul>
+<% @article.likes.each do |like| %>
+    <% if like.is_dislike %>
+        <li>
+            <%= like.user.email %>
+        </li>
+    <% end %>
+  <% end %>
+</ul>
+
+
+
 <h2>Comments</h2>
 <%= render @article.comments %>
 
