@@ -10,20 +10,20 @@
 
   <div class="field form-group">
     <% f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %><br />
   </div>
 
   <div class="field form-group">
-    <% f.label :password %>
+  <% f.label :password %>
+  <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password" %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Password" %>
   </div>
 
   <div class="field form-group">
     <% f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Password Confirmation" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Password Confirmation" %><br />
   </div>
 
   <div class="actions">
